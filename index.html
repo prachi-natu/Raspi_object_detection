@@ -1,0 +1,649 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.5">
+    
+    
+      
+        <title>Documentation- Object Detection on Raspberry-pi-4 using Edge Impulse platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.0e669242.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#steps-for-object-detection-on-raspberry-pi-using-edge-impulse-platform" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Documentation- Object Detection on Raspberry-pi-4 using Edge Impulse platform" class="md-header__button md-logo" aria-label="Documentation- Object Detection on Raspberry-pi-4 using Edge Impulse platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentation- Object Detection on Raspberry-pi-4 using Edge Impulse platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Steps for Object Detection on Raspberry-pi using Edge Impulse platform
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Documentation- Object Detection on Raspberry-pi-4 using Edge Impulse platform" class="md-nav__button md-logo" aria-label="Documentation- Object Detection on Raspberry-pi-4 using Edge Impulse platform" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Documentation- Object Detection on Raspberry-pi-4 using Edge Impulse platform
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Steps for Object Detection on Raspberry-pi using Edge Impulse platform
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Steps for Object Detection on Raspberry-pi using Edge Impulse platform
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-raspberry-pi-os-on-raspberry-pi-4-model-b-using-raspberry-pi-imager" class="md-nav__link">
+    Install Raspberry Pi OS on Raspberry Pi 4 model B using Raspberry Pi Imager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-raspberry-pi-to-your-internet-wifimobile-data" class="md-nav__link">
+    Connect Raspberry Pi to your Internet (Wifi/Mobile Data)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-raspberry-pi-graphical-desktop-remotely" class="md-nav__link">
+    Access Raspberry-pi Graphical Desktop remotely
+  </a>
+  
+    <nav class="md-nav" aria-label="Access Raspberry-pi Graphical Desktop remotely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-connection-was-refused-by-the-computer" class="md-nav__link">
+    1. 'The connection was refused by the computer'
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-timed-out-waiting-for-a-response-from-the-computer" class="md-nav__link">
+    2. 'Timed out waiting for a response from the computer'
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-to-raspberry-pi-bullseye-camera" class="md-nav__link">
+    Connecting to Raspberry Pi Bullseye Camera
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting to Raspberry Pi Bullseye Camera">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-can-not-currently-show-desktop" class="md-nav__link">
+    1. 'Can not currently show Desktop'
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-raspberry-pi-to-edge-impulse" class="md-nav__link">
+    Connecting raspberry Pi to Edge Impulse
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting raspberry Pi to Edge Impulse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-acquisition" class="md-nav__link">
+    1. Data Acquisition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-impulse-design-data-acquisition-data-processing-and-model-training" class="md-nav__link">
+    2. Impulse Design (Data acquisition, Data processing and Model training)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-inference" class="md-nav__link">
+    Live Inference
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-the-model-back-to-device" class="md-nav__link">
+    Deploying the model back to device
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-raspberry-pi-os-on-raspberry-pi-4-model-b-using-raspberry-pi-imager" class="md-nav__link">
+    Install Raspberry Pi OS on Raspberry Pi 4 model B using Raspberry Pi Imager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-raspberry-pi-to-your-internet-wifimobile-data" class="md-nav__link">
+    Connect Raspberry Pi to your Internet (Wifi/Mobile Data)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-raspberry-pi-graphical-desktop-remotely" class="md-nav__link">
+    Access Raspberry-pi Graphical Desktop remotely
+  </a>
+  
+    <nav class="md-nav" aria-label="Access Raspberry-pi Graphical Desktop remotely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-connection-was-refused-by-the-computer" class="md-nav__link">
+    1. 'The connection was refused by the computer'
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-timed-out-waiting-for-a-response-from-the-computer" class="md-nav__link">
+    2. 'Timed out waiting for a response from the computer'
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-to-raspberry-pi-bullseye-camera" class="md-nav__link">
+    Connecting to Raspberry Pi Bullseye Camera
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting to Raspberry Pi Bullseye Camera">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-can-not-currently-show-desktop" class="md-nav__link">
+    1. 'Can not currently show Desktop'
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-raspberry-pi-to-edge-impulse" class="md-nav__link">
+    Connecting raspberry Pi to Edge Impulse
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting raspberry Pi to Edge Impulse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-acquisition" class="md-nav__link">
+    1. Data Acquisition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-impulse-design-data-acquisition-data-processing-and-model-training" class="md-nav__link">
+    2. Impulse Design (Data acquisition, Data processing and Model training)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-inference" class="md-nav__link">
+    Live Inference
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-the-model-back-to-device" class="md-nav__link">
+    Deploying the model back to device
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="steps-for-object-detection-on-raspberry-pi-using-edge-impulse-platform">Steps for Object Detection on Raspberry-pi using Edge Impulse platform</h1>
+<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
+<h2 id="install-raspberry-pi-os-on-raspberry-pi-4-model-b-using-raspberry-pi-imager">Install Raspberry Pi OS on Raspberry Pi 4 model B using Raspberry Pi Imager</h2>
+<ul>
+<li>Download Raspberry Pi Imager from <a href="https://www.raspberrypi.com/software/">Rasberry Pi Imager for Windows</a> to your system.</li>
+<li>Install it to SD card with SD card reader.</li>
+</ul>
+<h2 id="connect-raspberry-pi-to-your-internet-wifimobile-data">Connect Raspberry Pi to your Internet (Wifi/Mobile Data)</h2>
+<ul>
+<li>You can use some IP scanner tool to scan and check if your Raspi is connected to your internet</li>
+<li>You can download <a href="https://angryip.org/download/#windows">Angry IP Scanner</a> from here.</li>
+<li>Scan using IP scanner and identify IP address of RasPi</li>
+</ul>
+<h2 id="access-raspberry-pi-graphical-desktop-remotely">Access Raspberry-pi Graphical Desktop remotely</h2>
+<ul>
+<li>To access graphical desktop of RasPi from your laptop, download <a href="https://www.realvnc.com/en/connect/download/viewer/">vnc viewer</a> from here.</li>
+<li>Add new connection in VNC viewer.</li>
+<li>Enter IP address of RasPi and password set for Raspi which was set when OS was installed on RasPi using Raspi Imager.</li>
+<li>Now RasPi Desktop will be visible on your laptop screen.</li>
+<li>Sometimes, it may not be visible in first attempt and can show following possible errors:</li>
+</ul>
+<h5 id="1-the-connection-was-refused-by-the-computer">1. 'The connection was refused by the computer'</h5>
+<ul>
+<li>Open PUTTY</li>
+<li>Type IP address of Raspi in Host Name or IP address text box</li>
+<li>Enter username and password that you have set for Raspi while flashing OS on SD card</li>
+<li>Now you are logged in to raspi terminal</li>
+<li>Type command ‘sudo raspi-config’ on Raspi Terminal</li>
+<li>Go to ‘Interface’ option--&gt;&gt; vnc --&gt; enable --&gt;ok</li>
+<li>Now connect from vnc viewer again</li>
+</ul>
+<h5 id="2-timed-out-waiting-for-a-response-from-the-computer">2. 'Timed out waiting for a response from the computer'</h5>
+<ul>
+<li>This issue can be resolved by configuring firewall to allow VNC Viewer port</li>
+<li>Search Windows Firewall in the search box and then select "Windows Firewall with advanced security" to open Port 5900.</li>
+<li>Select Inbound Rules from the left sidebar. Click New Rule in the right sidebar</li>
+<li>Select Port and click Next.</li>
+<li>Select TCP, enter 5900 in the Specific local port field, then click Next.</li>
+<li>Choose Allow the connection and click Next. Choose Domain and click Next. Enter a name for the rule, such as “vnc", and then click Finish.</li>
+<li>Restart the VNC Viewer</li>
+</ul>
+<h2 id="connecting-to-raspberry-pi-bullseye-camera">Connecting to Raspberry Pi Bullseye Camera</h2>
+<ul>
+<li>Once you are able to access Raspi remotely from laptop, next step is to connect to Raspi camera</li>
+<li>Open Raspi terminal</li>
+<li>Type command <code>raspistill</code> on terminal</li>
+<li>Following possible error may occur:</li>
+</ul>
+<h5 id="1-can-not-currently-show-desktop">1. 'Can not currently show Desktop'</h5>
+<ul>
+<li>To resolve this issue, connect to Raspi through ssh</li>
+<li>i.e. Open command prompt</li>
+<li>Type command <code>ssh@ip_address_of_Raspi</code></li>
+<li>Enter password set for Raspi while installing OS on it. </li>
+<li>At terminal type command <code>sudo nano  /boot/config.txt</code></li>
+<li>Config.txt file will be opened</li>
+<li>Do following modifications in <code>config.txt</code> file<ol>
+<li>Uncomment <code>hdmi_force_hotplug=1</code></li>
+<li>Uncomment `hdmi_group=1``</li>
+<li>Modify and uncomment <code>hdmi_model=1</code> to <code>hdmi_mode=16</code></li>
+<li>Under [pi4] title comment the first line.</li>
+<li>Save <code>config.txt</code> using <code>ctrl+s</code> and exit using <code>ctrl+x</code></li>
+</ol>
+</li>
+<li>Reboot the raspi using sudo reboot command</li>
+<li>Go to Raspi terminal and use command <code>raspistill</code></li>
+</ul>
+<h2 id="connecting-raspberry-pi-to-edge-impulse">Connecting raspberry Pi to Edge Impulse</h2>
+<ul>
+<li>Install dependencies by running following commands</li>
+<li><code>sudo apt update</code></li>
+<li><code>curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -</code></li>
+<li><code>sudo apt install -y gcc g++ make build-essential nodejs sox gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-base gstreamer1.0-plugins-base-apps</code></li>
+<li><code>npm config set user root &amp;&amp; sudo npm install edge-impulse-linux -g --unsafe-perm</code></li>
+<li>Connect to edge impulse by running the command <code>edge-impulse-linux</code></li>
+<li>This will start a wizard which will ask you to log in, and choose an Edge Impulse project</li>
+<li>Raspberry Pi is now connected to Edge Impulse. To verify this, go to your Edge Impulse project, and   click Devices. The device will be listed here.</li>
+<li>Once the device is connected to Edge Impulse Platform, below sequence of steps are followed which includes steps from data collection to live inference.</li>
+</ul>
+<h5 id="1-data-acquisition">1. Data Acquisition</h5>
+<ul>
+<li>Click on <code>Data acquisition</code> tab in edge impulse and capture images using Raspberry Pi camera</li>
+<li>Divide captured images into two sets. 80% images in training set and 20% images in test set</li>
+</ul>
+<h5 id="2-impulse-design-data-acquisition-data-processing-and-model-training">2. Impulse Design (Data acquisition, Data processing and Model training)</h5>
+<ul>
+<li>Click on <code>Impulse design</code> tab. </li>
+<li>An impulse takes raw data, uses signal processing to extract features, and then uses a learning block to classify new data.</li>
+<li>A complete Impulse will consist of 3 main building blocks: input block, processing block and a learning block.</li>
+<li>Click on <code>create impulse</code> option. Input block indicates type of input data you are training your model with. For Image input in our case, we use square image size. 360x360. Select this image size in input block.</li>
+<li>A processing block is basically a feature extractor. Select <code>pre-process and normalize images</code> option from available options.</li>
+<li>After adding processing block, next step is to add learning block. A learning block is simply a neural network that is trained to learn on your data. Learning blocks vary depending on what you want your model to do and the type of data in your training dataset. Select fine tuned pretrained model for object detection. It is recommended option by Edge Impulse.</li>
+<li>Save the created impulse.</li>
+<li>Click on <code>Image</code> tab under <code>Impulse Design</code> tab.</li>
+<li>Under <code>Parameters</code> tab click on <code>Save parameters</code></li>
+<li>Under <code>Generate Features</code> tab click on <code>Generate Features</code>. It will generate learned features.</li>
+<li>Now click on <code>Object Detection</code> tab under <code>Impulse Design</code> tab. Here you can customize the neural network model setting that you have selected in learning block. You can customize the parameters like <code>Number of training cycles</code>, <code>learning rate</code>, <code>validation set size</code> etc. </li>
+<li>Also, you can change the model if you want to and start training the model.</li>
+<li>Once the model is trained, it will give the performance of training model in the form of accuracy or precision score.</li>
+<li>It also displays <code>inference time</code> and <code>flash usage</code> for selected type of output device which is Raspberry Pi4 in this case</li>
+<li>You can fine tune neural network settings to get improved performance.</li>
+</ul>
+<h5 id="live-inference">Live Inference</h5>
+<ul>
+<li>Once model is trained for its best performance, we can capture image from Raspberry Pi4 camera and classify it using our trained model i.e. live inference</li>
+<li>To get live inference by trained model, click on <code>Live Classification</code> model.</li>
+<li>Select <code>Device</code> as <code>Raspberry Pi</code>.</li>
+<li>Select <code>Sensor</code> as <code>camera</code> and click on <code>Start Sampling</code>.</li>
+<li>This will capture live image. Model immediately detects the object in current frame and labels it.</li>
+<li>It shows bounding box around the object with label and confidence level.</li>
+</ul>
+<h5 id="deploying-the-model-back-to-device">Deploying the model back to device</h5>
+<ul>
+<li>Once the model is trained and tested for live inference, the trained model is deployed on the Raspberry Pi. It will run your impulse locally.</li>
+<li>Type command <code>edge-impulse-linux-runner</code> on Raspberry Pi terminal to run the impulse locally.</li>
+<li>This will automatically compile your model with full hardware acceleration, download the model to your Raspberry Pi, and then start object detection.</li>
+<li>It gives an URL on terminal. If you want to see the feed of camera and live object detection in browser, then open this url in browser and live object detection can be seen in browser.</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.78eede0e.min.js"></script>
+      
+    
+  </body>
+</html>
